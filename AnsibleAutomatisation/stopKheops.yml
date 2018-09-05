@@ -1,0 +1,13 @@
+- name: Stop kheops
+  hosts: targets
+  remote_user: vandooni
+  become: yes
+
+  tasks:
+    - name: Start Docker
+      shell: systemctl stop docker
+
+    - name: Stop Kheops
+      shell: docker-compose down -d >> ../../log
+      args:
+        chdir: repoGit/kheops

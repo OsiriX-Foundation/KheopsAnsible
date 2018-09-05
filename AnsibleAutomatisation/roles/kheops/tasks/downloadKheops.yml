@@ -1,0 +1,7 @@
+- name: Create directory for the git
+  file: path=repoGit state=directory
+
+- git:
+    repo: 'https://github.com/OsiriX-Foundation/kheopsDocker.git'
+    dest: repoGit
+    version: ansible-test

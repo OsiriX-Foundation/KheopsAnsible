@@ -1,0 +1,9 @@
+description files:
+  hosts: List of the targets
+  requirements.yml : List of instructions for the installations, need to be done before launch Kheops
+  startKheops.yml : Download the repo git and launch kheops. Accessible with the host_address:3000
+  stopKheops.yml : Stop kheops
+
+
+ssh-keygen -f "/home/vandooni/.ssh/known_hosts" -r "172.23.63.29"
+ssh vandooni@127.23.63.29

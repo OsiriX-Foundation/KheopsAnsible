@@ -1,0 +1,4 @@
+- name: Restart Kheops
+  shell: docker-compose restart -d >> ../../log
+  args:
+    chdir: repoGit/kheops

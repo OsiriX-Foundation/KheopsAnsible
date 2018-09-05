@@ -1,0 +1,7 @@
+---
+
+- hosts: targets
+  remote_user: vandooni
+  become: yes
+  roles:
+    - kheops

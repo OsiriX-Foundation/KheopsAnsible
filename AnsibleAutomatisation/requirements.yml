@@ -1,0 +1,69 @@
+- name: Installation git docker
+  hosts: targets
+  remote_user: vandooni
+  become: yes
+
+
+  tasks:
+   - name: Installation git
+     yum:
+       name=git
+       update_cache=no
+
+   - name: Install yum utils, device mapper persistent data, lvm2
+     yum:
+       name: "{{item}}"
+       state: latest
+     with_items:
+       - yum-utils
+       - device-mapper-persistent-data
+       - lvm2
+
+   - name: Add Docker repo
+     get_url:
+       url: https://download.docker.com/linux/centos/docker-ce.repo
+       dest: /etc/yum.repos.d/docer-ce.repo
+
+   - name: Enable Docker Edge repo
+     ini_file:
+       dest: /etc/yum.repos.d/docer-ce.repo
+       section: 'docker-ce-edge'
+       option: enabled
+       value: 0
+
+   - name: Enable Docker test repo
+     ini_file:
+       dest: /etc/yum.repos.d/docer-ce.repo
+       section: 'docker-ce-test'
+       option: enabled
+       value: 0
+
+   - name: Install Docker
+     package:
+       name: docker-ce
+       state: latest
+
+   - name: Start Docker
+     shell: systemctl start docker
+
+   - name: boot docker
+     shell: systemctl enable docker
+
+   - name: Installation epel release
+     yum:
+       name: "{{item}}"
+       state: latest
+     with_items:
+       - epel-release
+
+   - name: Installation python pip
+     yum:
+       name: "{{item}}"
+       state: latest
+     with_items:
+       - python-pip
+
+   - name: Pip install docker compose
+     pip:
+       name: docker-compose
+       state: latest

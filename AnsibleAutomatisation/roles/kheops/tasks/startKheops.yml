@@ -1,0 +1,7 @@
+- name: Start Docker
+  shell: systemctl start docker
+
+- name: Start Kheops
+  shell: docker-compose up -d >> ../../log
+  args:
+    chdir: repoGit/kheops
