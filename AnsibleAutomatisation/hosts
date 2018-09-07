@@ -1,5 +1,5 @@
-[targets]
-172.23.63.29
+[debian]
+172.23.63.30
 
-[all:children]
-target
+[centos]
+172.23.63.29

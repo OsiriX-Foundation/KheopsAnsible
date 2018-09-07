@@ -3,20 +3,20 @@ read hosts
 
 hosts=hosts
 
-ssh -q vandooni@172.23.63.29 exit
+ssh -q vandooni@172.23.63.30 exit
 RESULT=$?
 
 if [ $RESULT -ne 0 ]
 then
   echo 'SSH connection impossible'
-  ssh vandooni@172.23.63.29
+  ssh vandooni@172.23.63.30
   echo 'Do you make a keygen ? (y/n)'
   read RESPONSE
   RESPONSE=${RESPONSE,,}
   if [[ $RESPONSE =~ ^(yes|y) ]]
   then
-    ssh-keygen -f $HOME"/.ssh/known_hosts" -R 172.23.63.29
-    ssh-keyscan -H 172.23.63.29 >> ~/.ssh/known_hosts
+    ssh-keygen -f $HOME"/.ssh/known_hosts" -R 172.23.63.30
+    ssh-keyscan -H 172.23.63.30 >> ~/.ssh/known_hosts
   fi
 fi
 

@@ -9,3 +9,10 @@
       name: "{{ install_git }}"
       state: present
     when: ansible_distribution|lower == 'centos'
+
+  - name: Check and install git (debian)
+    apt:
+      pkg: git
+      state: present
+      update_cache: yes
+    when: ansible_distribution|lower == 'debian'

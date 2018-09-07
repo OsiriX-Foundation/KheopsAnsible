@@ -1,5 +1,13 @@
 ---
 
+- name: Get aptitude for upgrade
+  apt: pkg=aptitude state=present
+  when: ansible_distribution|lower == 'debian'
+
+- name: Safe system upgrade via aptitude
+  apt: upgrade=safe
+  when: ansible_distribution|lower == 'debian'
+
 - name: Install git
   import_tasks: git_install.yml
 

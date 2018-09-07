@@ -1,0 +1,20 @@
+---
+
+install_git_dependencies:
+  - libcurl4-gutls-dev
+  - libexpat1-dev
+  - gettext
+  - libz-dev
+  - libssl-dev
+
+install_git:
+- git
+
+install_docker_from_source_dependencies:
+- yum-utils
+- device-mapper-persistent-data
+- lvm2
+
+docker_repo: https://download.docker.com/linux/centos/docker-ce.repo
+
+dest_docker_repo: /etc/yum.repos.d/docer-ce.repo

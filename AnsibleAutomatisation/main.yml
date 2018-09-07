@@ -1,6 +1,6 @@
 ---
 
-- hosts: targets
+- hosts: debian
   remote_user: vandooni
   become: yes
   roles:
