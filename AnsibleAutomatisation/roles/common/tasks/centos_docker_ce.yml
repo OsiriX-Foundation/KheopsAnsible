@@ -2,20 +2,13 @@
 
   - name: Include OS-specific variables (centOS7)
     include_vars: "{{ ansible_distribution|lower }}.yml"
-    when: ansible_distribution|lower == 'centos'
 
   - name: Check and install dependencies (centOS7)
     yum:
       name: "{{ item }}"
       state: present
     with_items: "{{ install_docker_from_source_dependencies }}"
-    when: ansible_distribution|lower == 'centos'
     register: install_check
-
-
-  - name: Include OS-specific variables (centOS7)
-    include_vars: "{{ ansible_distribution|lower }}.yml"
-    when: ansible_distribution|lower == 'centos'
 
   - name: Installation docker
     get_url:

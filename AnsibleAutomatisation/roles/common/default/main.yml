@@ -1,24 +1,8 @@
----
-
-install_git_dependencies:
-  - libcurl4-gutls-dev
-  - libexpat1-dev
-  - gettext
-  - libz-dev
-  - libssl-dev
-
-install_git:
-- git
-
-install_docker_from_source_dependencies:
-- apt-transport-https
-- ca-certificates
-- software-properties-common
-- cron
-
 docker_package: docker-ce
 docker_distribution: "{{ ansible_distribution|lower }}"
 docker_distribution_release: "{{ ansible_lsb.codename|lower }}"
+docker_version: "18.06.1"
+docker_debian_version: "{{ docker_version }}~ce~3~0~{{ docker_distribution }}"
 docker_apt_repository_host: download.docker.com
 docker_apt_key_url: 'https://{{ docker_apt_repository_host }}/linux/{{ docker_distribution }}/gpg'
 docker_apt_repository_url: 'https://{{ docker_apt_repository_host }}/linux'

@@ -1,0 +1,33 @@
+---
+
+- name: Include OS-specific variables (centOS7)
+  include_vars: "{{ ansible_distribution|lower }}.yml"
+
+- name: Install dependencies
+  apt:
+    name: "{{ item }}"
+    state: present
+    update_cache: True
+  with_items: "{{ install_docker_from_source_dependencies }}"
+
+- name: Import docker repository
+  apt_key:
+    url: "{{ docker_apt_key_url }}"
+    state: present
+
+- name: Add docker repository
+  apt_repository:
+    repo: deb {{ docker_apt_repository_url }}/{{ docker_distribution }} {{ docker_distribution_release }} stable
+    state: present
+
+- name: Update
+  apt:
+    update_cache: yes
+
+- name: Install docker
+  apt:
+    pkg: "{{ docker_package }}"
+    state: present
+
+- name: Enable Docker service to auostart on system boot
+  shell: systemctl enable docker
