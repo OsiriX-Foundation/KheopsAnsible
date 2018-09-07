@@ -4,4 +4,4 @@
   remote_user: vandooni
   become: yes
   roles:
-    - kheops
+    - common

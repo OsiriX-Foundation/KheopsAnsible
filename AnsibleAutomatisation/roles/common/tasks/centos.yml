@@ -7,7 +7,7 @@
   yum:
     name: "{{item}}"
     state: latest
-  with_items: 
+  with_items:
     - yum-utils
     - device-mapper-persistent-data
     - lvm2

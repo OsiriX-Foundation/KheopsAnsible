@@ -1,3 +1,5 @@
+---
+
 - name: load by system
-  import_tasks: centos.yml
+  import_tasks: install_from_os.yml
   when: ansible_distribution|lower == 'centos'
