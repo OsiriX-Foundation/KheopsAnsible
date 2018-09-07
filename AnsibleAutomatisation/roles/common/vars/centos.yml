@@ -1,7 +1,9 @@
 ---
 
-install_from_source_dependencies:
+install_git:
 - git
+
+install_docker_from_source_dependencies:
 - yum-utils
 - device-mapper-persistent-data
 - lvm2

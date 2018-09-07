@@ -1,0 +1,56 @@
+---
+
+  - name: Include OS-specific variables (centOS7)
+    include_vars: "{{ ansible_distribution|lower }}.yml"
+    when: ansible_distribution|lower == 'centos'
+
+  - name: Check installation done (centOS7)
+    yum:
+      name: "{{ item }}"
+      state: installed
+    with_items: "{{ install_docker_from_source_dependencies }}"
+    when: ansible_distribution|lower == 'centos'
+    register: install_check
+
+  - name: Installation (centOS7)
+    yum:
+      name: "{{ item }}"
+      state: latest
+    with_items: "{{ install_docker_from_source_dependencies }}"
+    when:
+      - ansible_distribution|lower == 'centos'
+      - (install_check.results|length == 1) or (install_check.results[1].yumstate != 'installed')
+
+  - name: Include OS-specific variables (centOS7)
+    include_vars: "{{ ansible_distribution|lower }}.yml"
+    when: ansible_distribution|lower == 'centos'
+
+  - name: Installation docker
+    get_url:
+      url: "{{ docker_repo }}"
+      dest: "{{ dest_docker_repo }}"
+
+  - name: Enable Docker Edge repo
+    ini_file:
+      dest: "{{ dest_docker_repo }}"
+      section: 'docker-ce-edge'
+      option: enabled
+      value: 0
+
+  - name: Enable Docker test repo
+    ini_file:
+      dest: "{{ dest_docker_repo }}"
+      section: 'docker-ce-test'
+      option: enabled
+      value: 0
+
+  - name: Install Docker CE
+    package:
+      name: docker-ce
+      state: latest
+
+  - name: Start Docker
+    shell: systemctl start docker
+
+  - name: Boot docker
+    shell: systemctl enable docker

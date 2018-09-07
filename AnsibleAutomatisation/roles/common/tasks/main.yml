@@ -1,5 +1,10 @@
 ---
 
-- name: load by system
-  import_tasks: install_from_os.yml
-  when: ansible_distribution|lower == 'centos'
+- name: Install git
+  import_tasks: git_install.yml
+
+- name: Install Docker-CE
+  include_tasks: "roles/common/tasks/{{ ansible_distribution|lower }}_docker_ce.yml"
+
+- name: Install docker-compose
+  include_tasks:  "roles/common/tasks/{{ ansible_distribution|lower }}_docker-compose.yml"
