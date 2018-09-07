@@ -4,4 +4,4 @@
 - name: Start Kheops
   shell: docker-compose up -d >> ../../log
   args:
-    chdir: repoGit/kheops
+    chdir: "{{ dirProjectKheops }}"

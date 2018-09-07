@@ -1,0 +1,9 @@
+---
+
+dirKheops: repoKheops
+
+dirProjectKheops: repoKheops/kheops
+
+repoKheops: https://github.com/OsiriX-Foundation/kheopsDocker.git
+
+versionGitKheops: ansible-test

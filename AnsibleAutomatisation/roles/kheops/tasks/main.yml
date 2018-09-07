@@ -1,3 +1,7 @@
-- import_tasks: downloadKheops.yml
+---
 
-- import_tasks: startKheops.yml
+- name: Download git project Kheops
+  import_tasks: downloadKheops.yml
+
+- name: Launch project Kheops
+  import_tasks: startKheops.yml

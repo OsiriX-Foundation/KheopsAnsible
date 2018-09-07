@@ -1,7 +1,12 @@
+---
+
+- name: Include OS-specific variables (centOS7)
+  include_vars: kheops.yml
+
 - name: Create directory for the git
-  file: path=repoGit state=directory
+  file: path="{{ dirKheops }}" state=directory
 
 - git:
-    repo: 'https://github.com/OsiriX-Foundation/kheopsDocker.git'
-    dest: repoGit
-    version: ansible-test
+    repo: "{{ repoKheops }}"
+    dest: "{{ dirKheops }}"
+    version: "{{ versionGitKheops }}"
