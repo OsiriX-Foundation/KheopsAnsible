@@ -4,17 +4,8 @@
     include_vars: "{{ ansible_distribution|lower }}.yml"
     when: ansible_distribution|lower == 'centos'
 
-  - name: Check installation done (centOS7)
+  - name: Check and install git (centOS7)
     package:
       name: "{{ install_git }}"
       state: present
     when: ansible_distribution|lower == 'centos'
-    register: install_check
-
-  - name: Installation git (centOS7)
-    yum:
-      name: "{{ install_git }}"
-      state: latest
-    when:
-      - ansible_distribution|lower == 'centos'
-      - ((install_check.results|length == 1) or (install_check.results[1].yumstate != 'install'))

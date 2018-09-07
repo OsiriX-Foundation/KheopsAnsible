@@ -5,6 +5,7 @@ hosts=hosts
 
 ssh -q vandooni@172.23.63.29 exit
 RESULT=$?
+
 if [ $RESULT -ne 0 ]
 then
   echo 'SSH connection impossible'

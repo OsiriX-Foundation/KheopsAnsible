@@ -3,14 +3,14 @@
 - name: Installation epel release
   yum:
     name: epel-release
-    state: latest
+    state: present
 
 - name: Installation python pip
   yum:
     name: python-pip
-    state: latest
+    state: present
 
 - name: Pip install docker compose
   pip:
     name: docker-compose
-    state: latest
+    state: present

@@ -4,22 +4,14 @@
     include_vars: "{{ ansible_distribution|lower }}.yml"
     when: ansible_distribution|lower == 'centos'
 
-  - name: Check installation done (centOS7)
+  - name: Check and install dependencies (centOS7)
     yum:
       name: "{{ item }}"
-      state: installed
+      state: present
     with_items: "{{ install_docker_from_source_dependencies }}"
     when: ansible_distribution|lower == 'centos'
     register: install_check
 
-  - name: Installation (centOS7)
-    yum:
-      name: "{{ item }}"
-      state: latest
-    with_items: "{{ install_docker_from_source_dependencies }}"
-    when:
-      - ansible_distribution|lower == 'centos'
-      - (install_check.results|length == 1) or (install_check.results[1].yumstate != 'installed')
 
   - name: Include OS-specific variables (centOS7)
     include_vars: "{{ ansible_distribution|lower }}.yml"
@@ -47,7 +39,7 @@
   - name: Install Docker CE
     package:
       name: docker-ce
-      state: latest
+      state: present
 
   - name: Start Docker
     shell: systemctl start docker
