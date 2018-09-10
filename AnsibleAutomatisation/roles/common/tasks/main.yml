@@ -1,5 +1,9 @@
 ---
 
+- name: Install sudo if not present
+  apt: pkg=sudo state=present
+  when: ansible_distribution|lower == 'debian'
+
 - name: Get aptitude for upgrade
   apt: pkg=aptitude state=present
   when: ansible_distribution|lower == 'debian'

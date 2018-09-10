@@ -7,7 +7,10 @@
     update_cache: True
 
 - name: download docker-compose
-  shell: curl -L https://gitub.com/docker/compose/releases/download/1.22.0/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
+  get_url:
+    url: "https://github.com/docker/compose/releases/download/1.22.0/docker-compose-Linux-x86_64"
+    dest: /usr/local/bin/docker-compose
+    force: True
 
 - name: active docker-compose
   shell: chmod +x /usr/local/bin/docker-compose
