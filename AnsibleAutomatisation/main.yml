@@ -1,6 +1,6 @@
 ---
 
-- hosts: debian
+- hosts: centos
   remote_user: vandooni
   become: yes
   roles:

@@ -1,22 +1,24 @@
 echo 'Enter the hosts file'
 read hosts
 
+IPADDR="129.194.108.253"
+
 hosts=hosts
 
-ssh -q vandooni@172.23.63.27 exit
+ssh -q vandooni@$IPADDR exit
 RESULT=$?
 
 if [ $RESULT -ne 0 ]
 then
   echo 'SSH connection impossible'
-  ssh vandooni@172.23.63.27
+  ssh vandooni@$IPADDR
   echo 'Do you make a keygen ? (y/n)'
   read RESPONSE
   RESPONSE=${RESPONSE,,}
   if [[ $RESPONSE =~ ^(yes|y) ]]
   then
-    ssh-keygen -f $HOME"/.ssh/known_hosts" -R 172.23.63.27
-    ssh-keyscan -H 172.23.63.27 >> ~/.ssh/known_hosts
+    ssh-keygen -f $HOME"/.ssh/known_hosts" -R $IPADDR
+    ssh-keyscan -H $IPADDR >> ~/.ssh/known_hosts
   fi
 fi
 

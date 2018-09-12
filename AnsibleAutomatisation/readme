@@ -1,9 +1,17 @@
+installation of ansible:
+sudo apt-get install ansible
+
+you can need sshpass too:
+sudo apt-get install sshpass
+
+
 description files:
   hosts: List of the targets
-  requirements.yml : List of instructions for the installations, need to be done before launch Kheops
-  startKheops.yml : Download the repo git and launch kheops. Accessible with the host_address:3000
-  stopKheops.yml : Stop kheops
-
+  main: Launcher of automatisation
+  run.sh: Launch main and check the connection SSH
+  roles: Contains roles
+  roles/common: Instructions of installations
+  roles/kheops: Instructions of launch Kheops
 
 ssh-keygen -f "/home/vandooni/.ssh/known_hosts" -r "172.23.63.29"
 ssh vandooni@127.23.63.29
